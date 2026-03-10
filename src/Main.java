@@ -1,39 +1,55 @@
+import Model.Produto;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    ArrayList<String> produtos = new ArrayList<>();
+public class Main {
 
-    int opcao;
-    do {
-        System.out.println("=====SISTEMA DE PRODUTOS=====");
-        System.out.println("1 - Cadastrar produto");
-        System.out.println("2 - Listrar Produtos");
-        System.out.println("3 - Sair");
+    public static void main(String[] args) {
 
-        System.out.println(" Escolha: ");
-        opcao = scanner.nextInt();
-        scanner.next();
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Produto> produtos = new ArrayList<>();
 
+        int opcao;
 
-        if (opcao == 1) {
-            System.out.println("digite o nome do produto");
-            String nome = scanner.nextLine();
+        do {
 
-            produtos.add(nome);
+            System.out.println("=====Sistema de Cadastro de Produtos=====");
+            System.out.println("1 - Cadastrar produto");
+            System.out.println("2 - Listar Produtos");
+            System.out.println("3 - Sair");
 
-            System.out.println("Produto Cadastrado com Sucesso");
+            System.out.print("Escolha: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
 
-        }
+            if (opcao == 1) {
 
-        if (opcao == 2) {
-            System.out.println("Lista de Produtos Cadastrados");
-            for (String produto : produtos) {
-                System.out.println(produto);
+                System.out.print("Digite o nome do produto: ");
+                String nome = scanner.nextLine();
+
+                Produto p = new Produto();
+                p.nome = nome;
+
+                produtos.add(p);
+
+                System.out.println("Produto cadastrado com sucesso");
+
             }
-        }
-    } while (opcao != 3); {
-    }
-}
 
+            if (opcao == 2) {
+
+                System.out.println("Lista de Produtos Cadastrados:");
+
+                for (Produto produto : produtos) {
+                    System.out.println(produto.nome);
+                }
+
+            }
+
+        } while (opcao != 3);
+
+        System.out.println("Sistema encerrado.");
+
+    }
+
+}
