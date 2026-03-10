@@ -1,5 +1,4 @@
-import Model.Produto;
-import java.util.ArrayList;
+import service.ProdutoService;
 import java.util.Scanner;
 
 public class Main {
@@ -7,16 +6,18 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Produto> produtos = new ArrayList<>();
+        ProdutoService service = new ProdutoService();
 
         int opcao;
 
         do {
 
-            System.out.println("=====Sistema de Cadastro de Produtos=====");
+            System.out.println("\n===== SISTEMA DE CADASTRO DE PRODUTOS =====");
             System.out.println("1 - Cadastrar produto");
-            System.out.println("2 - Listar Produtos");
+            System.out.println("2 - Listar produtos");
             System.out.println("3 - Sair");
+            System.out.println("4 - Remover produto");
+            System.out.println("5 - Atualizar produto");
 
             System.out.print("Escolha: ");
             opcao = scanner.nextInt();
@@ -24,26 +25,49 @@ public class Main {
 
             if (opcao == 1) {
 
-                System.out.print("Digite o nome do produto: ");
+                System.out.print("Nome: ");
                 String nome = scanner.nextLine();
 
-                Produto p = new Produto();
-                p.nome = nome;
+                System.out.print("Preço: ");
+                double preco = scanner.nextDouble();
 
-                produtos.add(p);
+                System.out.print("Quantidade: ");
+                int quantidade = scanner.nextInt();
+                scanner.nextLine();
 
-                System.out.println("Produto cadastrado com sucesso");
-
+                service.cadastrarProduto(nome, preco, quantidade);
             }
 
             if (opcao == 2) {
+                service.listarProdutos();
+            }
 
-                System.out.println("Lista de Produtos Cadastrados:");
+            if (opcao == 4) {
 
-                for (Produto produto : produtos) {
-                    System.out.println(produto.nome);
-                }
+                System.out.print("Digite o ID do produto: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
 
+                service.removerProduto(id);
+            }
+
+            if (opcao == 5) {
+
+                System.out.print("ID do produto: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.print("Novo nome: ");
+                String nome = scanner.nextLine();
+
+                System.out.print("Novo preço: ");
+                double preco = scanner.nextDouble();
+
+                System.out.print("Nova quantidade: ");
+                int quantidade = scanner.nextInt();
+                scanner.nextLine();
+
+                service.atualizarProduto(id, nome, preco, quantidade);
             }
 
         } while (opcao != 3);
@@ -51,5 +75,4 @@ public class Main {
         System.out.println("Sistema encerrado.");
 
     }
-
 }
