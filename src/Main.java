@@ -25,78 +25,68 @@ public class Main {
             opcao = scanner.nextInt();
             scanner.nextLine();
 
-            switch (opcao) {
+            if (opcao == 1) {
 
-                case 1:
+                System.out.print("Nome: ");
+                String nome = scanner.nextLine();
 
-                    System.out.print("Nome: ");
-                    String nome = scanner.nextLine();
+                System.out.print("Preço: ");
+                double preco = scanner.nextDouble();
 
-                    System.out.print("Preço: ");
-                    double preco = scanner.nextDouble();
+                System.out.print("Quantidade: ");
+                int quantidade = scanner.nextInt();
+                scanner.nextLine();
 
-                    System.out.print("Quantidade: ");
-                    int quantidade = scanner.nextInt();
-                    scanner.nextLine();
+                service.cadastrarProduto(nome, preco, quantidade);
+            }
 
-                    service.cadastrarProduto(nome, preco, quantidade);
-                    break;
+            if (opcao == 2) {
+                service.listarProdutos();
+            }
 
-                case 2:
-                    service.listarProdutos();
-                    break;
+            if (opcao == 4) {
 
-                case 4:
+                System.out.print("Digite o ID do produto: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
 
-                    System.out.print("Digite o ID do produto: ");
-                    int idRemover = scanner.nextInt();
-                    scanner.nextLine();
+                service.removerProduto(id);
+            }
 
-                    service.removerProduto(idRemover);
-                    break;
+            if (opcao == 5) {
 
-                case 5:
+                System.out.print("ID do produto: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
 
-                    System.out.print("ID do produto: ");
-                    int idAtualizar = scanner.nextInt();
-                    scanner.nextLine();
+                System.out.print("Novo nome: ");
+                String nome = scanner.nextLine();
 
-                    System.out.print("Novo nome: ");
-                    String novoNome = scanner.nextLine();
+                System.out.print("Novo preço: ");
+                double preco = scanner.nextDouble();
 
-                    System.out.print("Novo preço: ");
-                    double novoPreco = scanner.nextDouble();
+                System.out.print("Nova quantidade: ");
+                int quantidade = scanner.nextInt();
+                scanner.nextLine();
 
-                    System.out.print("Nova quantidade: ");
-                    int novaQuantidade = scanner.nextInt();
-                    scanner.nextLine();
+                service.atualizarProduto(id, nome, preco, quantidade);
+            }
 
-                    service.atualizarProduto(idAtualizar, novoNome, novoPreco, novaQuantidade);
-                    break;
+            if (opcao == 6) {
 
-                case 6:
+                System.out.print("Digite o ID do produto: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
 
-                    System.out.print("Digite o ID do produto: ");
-                    int idBuscar = scanner.nextInt();
-                    scanner.nextLine();
+                service.buscarProduto(id);
+            }
 
-                    service.buscarProduto(idBuscar);
-                    break;
-
-                case 7:
-                    service.valorTotalEstoque();
-                    break;
-
-                case 3:
-                    System.out.println("Sistema encerrado.");
-                    break;
-
-                default:
-                    System.out.println("Opção inválida.");
+            if (opcao == 7) {
+                service.valorTotalEstoque();
             }
 
         } while (opcao != 3);
 
-        scanner.close();
+        System.out.println("Sistema encerrado.");
     }
 }

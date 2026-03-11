@@ -11,10 +11,10 @@ public class ProdutoService {
     public void cadastrarProduto(String nome, double preco, int quantidade) {
 
         Produto p = new Produto();
-        p.id = proximoId++;
-        p.nome = nome;
-        p.preco = preco;
-        p.quantidade = quantidade;
+        p.setId(proximoId++);
+        p.setNome(nome);
+        p.setPreco(preco);
+        p.setQuantidade(quantidade);
 
         produtos.add(p);
 
@@ -31,10 +31,10 @@ public class ProdutoService {
         for (Produto produto : produtos) {
 
             System.out.println(
-                    "ID: " + produto.id +
-                            " | Nome: " + produto.nome +
-                            " | Preço: R$" + produto.preco +
-                            " | Quantidade: " + produto.quantidade
+                    "ID: " + produto.getId() +
+                            " | Nome: " + produto.getNome() +
+                            " | Preço: R$" + produto.getPreco() +
+                            " | Quantidade: " + produto.getQuantidade()
             );
         }
     }
@@ -43,7 +43,7 @@ public class ProdutoService {
 
         for (Produto produto : produtos) {
 
-            if (produto.id == id) {
+            if (produto.getId() == id) {
                 produtos.remove(produto);
                 System.out.println("Produto removido com sucesso!");
                 return;
@@ -57,11 +57,11 @@ public class ProdutoService {
 
         for (Produto produto : produtos) {
 
-            if (produto.id == id) {
+            if (produto.getId() == id) {
 
-                produto.nome = nome;
-                produto.preco = preco;
-                produto.quantidade = quantidade;
+                produto.setNome(nome);
+                produto.setPreco(preco);
+                produto.setQuantidade(quantidade);
 
                 System.out.println("Produto atualizado com sucesso!");
                 return;
@@ -75,14 +75,15 @@ public class ProdutoService {
 
         for (Produto produto : produtos) {
 
-            if (produto.id == id) {
+            if (produto.getId() == id) {
 
                 System.out.println("Produto encontrado:");
+
                 System.out.println(
-                        "ID: " + produto.id +
-                                " | Nome: " + produto.nome +
-                                " | Preço: R$" + produto.preco +
-                                " | Quantidade: " + produto.quantidade
+                        "ID: " + produto.getId() +
+                                " | Nome: " + produto.getNome() +
+                                " | Preço: R$" + produto.getPreco() +
+                                " | Quantidade: " + produto.getQuantidade()
                 );
 
                 return;
@@ -98,11 +99,10 @@ public class ProdutoService {
 
         for (Produto produto : produtos) {
 
-            total += produto.preco * produto.quantidade;
+            total += produto.getPreco() * produto.getQuantidade();
 
         }
 
         System.out.println("Valor total do estoque: R$ " + total);
     }
-
 }
