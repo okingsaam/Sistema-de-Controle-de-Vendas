@@ -18,61 +18,85 @@ public class Main {
             System.out.println("3 - Sair");
             System.out.println("4 - Remover produto");
             System.out.println("5 - Atualizar produto");
-
+            System.out.println("6 - Buscar produto");
+            System.out.println("7 - Valor total do estoque");
             System.out.print("Escolha: ");
+
             opcao = scanner.nextInt();
             scanner.nextLine();
 
-            if (opcao == 1) {
+            switch (opcao) {
 
-                System.out.print("Nome: ");
-                String nome = scanner.nextLine();
+                case 1:
 
-                System.out.print("Preço: ");
-                double preco = scanner.nextDouble();
+                    System.out.print("Nome: ");
+                    String nome = scanner.nextLine();
 
-                System.out.print("Quantidade: ");
-                int quantidade = scanner.nextInt();
-                scanner.nextLine();
+                    System.out.print("Preço: ");
+                    double preco = scanner.nextDouble();
 
-                service.cadastrarProduto(nome, preco, quantidade);
-            }
+                    System.out.print("Quantidade: ");
+                    int quantidade = scanner.nextInt();
+                    scanner.nextLine();
 
-            if (opcao == 2) {
-                service.listarProdutos();
-            }
+                    service.cadastrarProduto(nome, preco, quantidade);
+                    break;
 
-            if (opcao == 4) {
+                case 2:
+                    service.listarProdutos();
+                    break;
 
-                System.out.print("Digite o ID do produto: ");
-                int id = scanner.nextInt();
-                scanner.nextLine();
+                case 4:
 
-                service.removerProduto(id);
-            }
+                    System.out.print("Digite o ID do produto: ");
+                    int idRemover = scanner.nextInt();
+                    scanner.nextLine();
 
-            if (opcao == 5) {
+                    service.removerProduto(idRemover);
+                    break;
 
-                System.out.print("ID do produto: ");
-                int id = scanner.nextInt();
-                scanner.nextLine();
+                case 5:
 
-                System.out.print("Novo nome: ");
-                String nome = scanner.nextLine();
+                    System.out.print("ID do produto: ");
+                    int idAtualizar = scanner.nextInt();
+                    scanner.nextLine();
 
-                System.out.print("Novo preço: ");
-                double preco = scanner.nextDouble();
+                    System.out.print("Novo nome: ");
+                    String novoNome = scanner.nextLine();
 
-                System.out.print("Nova quantidade: ");
-                int quantidade = scanner.nextInt();
-                scanner.nextLine();
+                    System.out.print("Novo preço: ");
+                    double novoPreco = scanner.nextDouble();
 
-                service.atualizarProduto(id, nome, preco, quantidade);
+                    System.out.print("Nova quantidade: ");
+                    int novaQuantidade = scanner.nextInt();
+                    scanner.nextLine();
+
+                    service.atualizarProduto(idAtualizar, novoNome, novoPreco, novaQuantidade);
+                    break;
+
+                case 6:
+
+                    System.out.print("Digite o ID do produto: ");
+                    int idBuscar = scanner.nextInt();
+                    scanner.nextLine();
+
+                    service.buscarProduto(idBuscar);
+                    break;
+
+                case 7:
+                    service.valorTotalEstoque();
+                    break;
+
+                case 3:
+                    System.out.println("Sistema encerrado.");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida.");
             }
 
         } while (opcao != 3);
 
-        System.out.println("Sistema encerrado.");
-
+        scanner.close();
     }
 }

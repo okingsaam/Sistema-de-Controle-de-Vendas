@@ -71,4 +71,38 @@ public class ProdutoService {
         System.out.println("Produto não encontrado.");
     }
 
+    public void buscarProduto(int id) {
+
+        for (Produto produto : produtos) {
+
+            if (produto.id == id) {
+
+                System.out.println("Produto encontrado:");
+                System.out.println(
+                        "ID: " + produto.id +
+                                " | Nome: " + produto.nome +
+                                " | Preço: R$" + produto.preco +
+                                " | Quantidade: " + produto.quantidade
+                );
+
+                return;
+            }
+        }
+
+        System.out.println("Produto não encontrado.");
+    }
+
+    public void valorTotalEstoque() {
+
+        double total = 0;
+
+        for (Produto produto : produtos) {
+
+            total += produto.preco * produto.quantidade;
+
+        }
+
+        System.out.println("Valor total do estoque: R$ " + total);
+    }
+
 }
